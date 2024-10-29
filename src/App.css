@@ -1,7 +1,7 @@
 svg {
   width: 120px;
   height: 120px;
-  margin: 20px;
+  /* margin: 20px; */
   display: inline-block;
 }
 
@@ -11,4 +11,23 @@ svg {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.flex {
+  gap: 32px;
+  display: flex;
+  align-items: center;
+}
+.flex svg {
+  width: 150px;
+  height: auto;
+}
+.flex .vertical {
+  gap: 16px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.vertical img {
+  width: 150px;
 }
