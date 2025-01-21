@@ -4,29 +4,12 @@ import "./App.css";
 
 function App() {
   const [searchParam] = useSearchParams();
-  const url = searchParam.get("redirect");
+  // const url = searchParam.get("redirect");
 
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    // if (url) {
-    //   // window.open(url);
-
-    //   var now = new Date().getTime();
-    //   var appUrl = "petitspas://";
-
-    //   window.location = appUrl;
-
-    //   // Check if the user stays on the website (indicating app is not installed)
-    //   setTimeout(function () {
-    //     var timeElapsed = new Date().getTime() - now;
-    //     if (timeElapsed < 1500) {
-    //       // App not installed, redirect to App Store
-    //       window.location.href = "https://apps.apple.com/app/com.xcdm.petitspas";
-    //     }
-    //   }, 1000);
-    // }
-    setTimeout(() => setVisible(true), 3000);
+    setTimeout(() => setVisible(true), 1000);
   }, [searchParam]);
 
   useEffect(() => {
