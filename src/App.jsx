@@ -1,6 +1,6 @@
+import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import "./App.css";
-import { useEffect, useState } from "react";
 
 function App() {
   const [searchParam] = useSearchParams();
@@ -14,38 +14,20 @@ function App() {
     setTimeout(() => setVisible(true), 3000);
   }, [searchParam]);
 
+  const openApp = () => {
+    window.location.href = window.open(url);
+  };
+
   return (
     <div className="main">
+      <button onClick={openApp}>Open App</button>
       {visible ? (
         <div className="flex">
           <div className="vertical">
-            <a
-              href="https://play.google.com/store/apps"
-              style={{ display: "block" }}
-            >
-              <svg
-                width="120"
-                height="40"
-                viewBox="0 0 120 40"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect
-                  x="0.5"
-                  y="0.5"
-                  width="119"
-                  height="39"
-                  rx="5.5"
-                  fill="white"
-                />
-                <rect
-                  x="0.5"
-                  y="0.5"
-                  width="119"
-                  height="39"
-                  rx="5.5"
-                  stroke="black"
-                />
+            <a href="https://play.google.com/store/apps" style={{ display: "block" }}>
+              <svg width="120" height="40" viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0.5" y="0.5" width="119" height="39" rx="5.5" fill="white" />
+                <rect x="0.5" y="0.5" width="119" height="39" rx="5.5" stroke="black" />
                 <path
                   d="M17.8048 19.4617L8.0896 30.0059C8.09051 30.0078 8.09051 30.0106 8.09142 30.0125C8.38981 31.1574 9.41179 32 10.6254 32C11.1108 32 11.5662 31.8656 11.9567 31.6305L11.9877 31.6118L22.9229 25.1593L17.8048 19.4617Z"
                   fill="#EA4335"
@@ -77,33 +59,10 @@ function App() {
           </div>
 
           <div className="vertical">
-            <a
-              href="https://www.apple.com/app-store/"
-              style={{ display: "block" }}
-            >
-              <svg
-                width="120"
-                height="40"
-                viewBox="0 0 120 40"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect
-                  x="0.5"
-                  y="0.5"
-                  width="119"
-                  height="39"
-                  rx="5.5"
-                  fill="white"
-                />
-                <rect
-                  x="0.5"
-                  y="0.5"
-                  width="119"
-                  height="39"
-                  rx="5.5"
-                  stroke="black"
-                />
+            <a href="https://www.apple.com/app-store/" style={{ display: "block" }}>
+              <svg width="120" height="40" viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0.5" y="0.5" width="119" height="39" rx="5.5" fill="white" />
+                <rect x="0.5" y="0.5" width="119" height="39" rx="5.5" stroke="black" />
                 <path
                   d="M24.7045 20.7631C24.7166 19.8432 24.9669 18.9413 25.4321 18.1412C25.8972 17.3411 26.5621 16.6688 27.3648 16.187C26.8548 15.476 26.1821 14.8908 25.4 14.478C24.6178 14.0652 23.7479 13.8361 22.8592 13.809C20.9635 13.6147 19.1258 14.9164 18.1598 14.9164C17.1751 14.9164 15.6878 13.8283 14.0862 13.8604C13.0502 13.8931 12.0406 14.1872 11.1557 14.7141C10.2708 15.241 9.54075 15.9827 9.03674 16.8669C6.85352 20.5573 8.48201 25.9809 10.5734 28.964C11.6197 30.4247 12.8426 32.0564 14.4428 31.9985C16.0086 31.9351 16.5934 31.0237 18.4835 31.0237C20.3561 31.0237 20.9048 31.9985 22.5374 31.9617C24.2176 31.9351 25.2762 30.4945 26.2859 29.02C27.0377 27.9792 27.6162 26.8288 28 25.6116C27.0238 25.2085 26.1908 24.5338 25.6048 23.6716C25.0187 22.8094 24.7056 21.7979 24.7045 20.7631Z"
                   fill="black"
