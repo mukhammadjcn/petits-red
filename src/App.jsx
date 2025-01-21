@@ -9,18 +9,32 @@ function App() {
 
   useEffect(() => {
     if (url) {
-      window.open(url);
+      // window.open(url);
+
+      var now = new Date().getTime();
+      var appUrl = "petitspas://";
+
+      window.location = appUrl;
+
+      // Check if the user stays on the website (indicating app is not installed)
+      setTimeout(function () {
+        var timeElapsed = new Date().getTime() - now;
+        if (timeElapsed < 1500) {
+          // App not installed, redirect to App Store
+          window.location.href = "https://apps.apple.com/app/com.xcdm.petitspas";
+        }
+      }, 1000);
     }
     setTimeout(() => setVisible(true), 3000);
   }, [searchParam]);
 
   const openApp = () => {
-    window.location.href = window.open(url);
+    window.location.href = "petitspas://";
   };
 
   return (
     <div className="main">
-      <button onClick={openApp}>Open App</button>
+      <button onClick={openApp}>Open app</button>
       {visible ? (
         <div className="flex">
           <div className="vertical">
