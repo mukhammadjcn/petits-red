@@ -5,36 +5,82 @@ import "./App.css";
 function App() {
   const [searchParam] = useSearchParams();
   const url = searchParam.get("redirect");
+
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    if (url) {
-      // window.open(url);
+    // if (url) {
+    //   // window.open(url);
 
-      var now = new Date().getTime();
-      var appUrl = "petitspas://";
+    //   var now = new Date().getTime();
+    //   var appUrl = "petitspas://";
 
-      window.location = appUrl;
+    //   window.location = appUrl;
 
-      // Check if the user stays on the website (indicating app is not installed)
-      setTimeout(function () {
-        var timeElapsed = new Date().getTime() - now;
-        if (timeElapsed < 1500) {
-          // App not installed, redirect to App Store
-          window.location.href = "https://apps.apple.com/app/com.xcdm.petitspas";
-        }
-      }, 1000);
-    }
+    //   // Check if the user stays on the website (indicating app is not installed)
+    //   setTimeout(function () {
+    //     var timeElapsed = new Date().getTime() - now;
+    //     if (timeElapsed < 1500) {
+    //       // App not installed, redirect to App Store
+    //       window.location.href = "https://apps.apple.com/app/com.xcdm.petitspas";
+    //     }
+    //   }, 1000);
+    // }
     setTimeout(() => setVisible(true), 3000);
   }, [searchParam]);
 
-  const openApp = () => {
-    window.location.href = "petitspas://";
-  };
+  useEffect(() => {
+    // Define URLs
+    const iosAppStoreUrl = "https://apps.apple.com/app/com.xcdm.petitspas";
+    const androidPlayStoreUrl = "https://play.google.com/store/apps/details?id=com.xcdm.petitspas";
+    const appSchemeUrl = "petitspas://";
+
+    // Function to detect the device type
+    const getDeviceType = () => {
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        return "ios";
+      } else if (/android/i.test(userAgent)) {
+        return "android";
+      } else {
+        return "desktop";
+      }
+    };
+
+    const deviceType = getDeviceType();
+
+    // Function to open the app and fallback if necessary
+    const openAppWithFallback = () => {
+      if (deviceType === "ios" || deviceType === "android") {
+        const now = new Date().getTime();
+
+        // Try opening the app
+        window.location.href = appSchemeUrl;
+
+        // Check if the app is installed by measuring the time spent
+        setTimeout(() => {
+          const elapsedTime = new Date().getTime() - now;
+
+          if (elapsedTime < 1500) {
+            // If the app is not installed, redirect to the appropriate store
+            if (deviceType === "ios") {
+              window.location.href = iosAppStoreUrl;
+            } else if (deviceType === "android") {
+              window.location.href = androidPlayStoreUrl;
+            }
+          }
+        }, 1000);
+      } else {
+        console.log("Desktop detected - staying on the current page.");
+      }
+    };
+
+    openAppWithFallback();
+  }, []);
 
   return (
     <div className="main">
-      <button onClick={openApp}>Open app</button>
       {visible ? (
         <div className="flex">
           <div className="vertical">
