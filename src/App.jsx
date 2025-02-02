@@ -14,8 +14,8 @@ function App() {
 
   useEffect(() => {
     // Define URLs
-    const iosAppStoreUrl = "https://apps.apple.com/app/com.xcdm.petitspas";
-    const androidPlayStoreUrl = "https://play.google.com/store/apps/details?id=com.xcdm.petitspas";
+    // const iosAppStoreUrl = "https://apps.apple.com/app/com.xcdm.petitspas";
+    // const androidPlayStoreUrl = "https://play.google.com/store/apps/details?id=com.xcdm.petitspas";
     const appSchemeUrl = "petitspas://";
 
     // Function to detect the device type
@@ -48,9 +48,9 @@ function App() {
           if (elapsedTime < 1500) {
             // If the app is not installed, redirect to the appropriate store
             if (deviceType === "ios") {
-              window.location.href = iosAppStoreUrl;
+              // window.location.href = iosAppStoreUrl;
             } else if (deviceType === "android") {
-              window.location.href = androidPlayStoreUrl;
+              // window.location.href = androidPlayStoreUrl;
             }
           }
         }, 1000);
