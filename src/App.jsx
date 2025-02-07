@@ -3,14 +3,15 @@ import { useSearchParams } from "react-router-dom";
 import "./App.css";
 
 function App() {
-  const [searchParam] = useSearchParams();
-  // const url = searchParam.get("redirect");
+  const [searchParams] = useSearchParams();
+ const params = searchParams.toString()
+ console.log('params', params)
 
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     setTimeout(() => setVisible(true), 1000);
-  }, [searchParam]);
+  }, [searchParams]);
 
   useEffect(() => {
     // Define URLs
@@ -39,7 +40,7 @@ function App() {
         const now = new Date().getTime();
 
         // Try opening the app
-        window.location.href = appSchemeUrl;
+        window.location.href = appSchemeUrl + "?" + params;
 
         // Check if the app is installed by measuring the time spent
         setTimeout(() => {
