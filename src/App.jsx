@@ -3,11 +3,8 @@ import { useSearchParams } from "react-router-dom";
 import "./App.css";
 
 function App() {
-  const [searchParams] = useSearchParams();
-  const params = searchParams.toString();
-  const route = searchParams.get("route");
-  const id = searchParams.get("id");
-  console.log("params", params);
+  const [searchParams] = useSearchParams(); 
+  const route = searchParams.get("route"); 
 
   const [visible, setVisible] = useState(false);
 
@@ -38,14 +35,16 @@ function App() {
 
     // Function to open the app and fallback if necessary
     const openAppWithFallback = () => {
+      searchParams.delete("route");
+      const params = searchParams.toString();
       let redirectUrl = appSchemeUrl;
-      redirectUrl += route ? `${route}?id=${id}` : "";
-      alert(redirectUrl);
+      redirectUrl += route ? `${route}` : "";
+      redirectUrl += '?' + params; 
+      console.log('redirectUrl', redirectUrl)
+    
       if (deviceType === "ios" || deviceType === "android") {
         const now = new Date().getTime();
-        let redirectUrl = appSchemeUrl;
-        redirectUrl += route ? `${route}?id=${id}` : "";
-        alert(redirectUrl);
+     
         // Try opening the app
         window.location.href = redirectUrl;
 
@@ -187,12 +186,12 @@ function App() {
           version="1.1"
           id="L9"
           xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlnsXlink="http://www.w3.org/1999/xlink"
           x="0px"
           y="0px"
           viewBox="0 0 100 100"
-          enable-background="new 0 0 0 0"
-          xml:space="preserve"
+          enableBackground="new 0 0 0 0"
+          xmlSpace="preserve"
         >
           <path
             fill="#47CF73"
